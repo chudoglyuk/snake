@@ -64,7 +64,7 @@ function startGame() {
 
 function chekAppleSnakeCollision(snakeObj, appleObj) {
     for (let segment of snakeObj.body) {
-        if (snakeObj.chekCollision(segment, appleObj)) {
+        if (chekCollision(appleObj, segment)) {
             return true;
         }
     }
@@ -74,7 +74,8 @@ function chekAppleSnakeCollision(snakeObj, appleObj) {
 function chekSnakeSelfCollision(snakeObj) {
     if (snakeObj.body.length > 2) {
         for (let i = 2; i < snakeObj.body.length - 1; i++) {
-            if (snakeObj.chekCollision(snakeObj.head, snakeObj.body[i])) {
+            snakeObj.head.size = snakeObj.size
+            if (chekCollision(snakeObj.head, snakeObj.body[i])) {
                 return true;
             }
         }
@@ -84,11 +85,9 @@ function chekSnakeSelfCollision(snakeObj) {
 
 
 function eatApple() {
-    if (chekAppleSnakeCollision(snake1, apple1)) {
-        removeAppleUI();
-        increaseSnake(snake1);
-        addAppleUI(apple1, field1);
-    }
+    removeAppleUI();
+    increaseSnake(snake1);
+    addAppleUI(apple1, field1);
 }
 
 function increaseSnake(snakeObj) {
@@ -99,7 +98,9 @@ function increaseSnake(snakeObj) {
 function moveSnake(snakeObj) {
     snakeObj.move(direction);
     renderSnakeUI(snake1);
-    eatApple();
+    if (chekAppleSnakeCollision(snake1, apple1)) {
+        eatApple();
+    }
 };
 
 function chekLoose(snakeObj, fieldObj) {

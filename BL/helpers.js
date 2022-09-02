@@ -7,16 +7,16 @@ function getRandomInt(min, max) {
 }
 
 function chekCollision(el1, el2) {
-    let collision = false;
+
     if (
-        el1.x - el2.x > -(this.size) &&
-        el1.x - el2.x < this.size &&
-        el1.y - el2.y > -(this.size) &&
-        el1.y - el2.y < this.size
+        el1.x - el2.x > -(el1.size) &&
+        el1.x - el2.x < el1.size &&
+        el1.y - el2.y > -(el1.size) &&
+        el1.y - el2.y < el1.size
     ) {
-        return (collision = true);
+        return true;
     }
-    return collision;
+    return false;
 }
 
 export {
