@@ -1,4 +1,5 @@
 'use strict';
+import { getRandomInt } from "../BL/helpers";
 
 const gameArea = document.querySelector('.field');
 const startButton = document.querySelector('.start-button');
@@ -14,13 +15,17 @@ function addAppleUI(appleObj, fieldObj) {
     apple = document.createElement('div');
     apple.style.width = appleObj.size + 'px';
     apple.style.height = appleObj.size + 'px';
-    appleObj.setRandomCoordinateY(0, fieldObj.height - appleObj.size);
-    appleObj.setRandomCoordinateX(0, fieldObj.height - appleObj.size);
+    setRandomAppleCoordinates(appleObj, fieldObj);
     apple.style.top = appleObj.y + 'px';
     apple.style.left = appleObj.x + 'px';
     apple.classList.add('apple');
     gameArea.appendChild(apple);
 
+}
+
+function setRandomAppleCoordinates(appleObj, fieldObj) {
+    appleObj.x = getRandomInt(0, fieldObj.width - appleObj.size);
+    appleObj.y = getRandomInt(0, fieldObj.height - appleObj.size);
 }
 
 function removeAppleUI() {
