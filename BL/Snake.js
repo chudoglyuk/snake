@@ -1,13 +1,15 @@
 'use strict';
 
 class Snake {
+  body = [{ x: 0, y: 0, lastSteps: [] }];
+  head = this.body[0];
+  tale = this.body[this.body.length - 1];
+
+
   constructor(size = 15, step = 1) {
     this.size = size;
     this.step = step;
   }
-  body = [{ x: 0, y: 0, lastSteps: [] }];
-  head = this.body[0];
-  tale = this.body[this.body.length - 1];
 
 
 
@@ -27,17 +29,17 @@ class Snake {
     }
   }
 
-  addStep(el) {
+  getStepCoordinates(el) {
     let step = {};
     step.x = el.x;
     step.y = el.y;
     return step;
   }
 
-  getLastStepsCoordinates() {
+  makeLastStepsCollection() {
     for (let i = this.body.length - 1; i >= 0; i--) {
       let el = this.body[i];
-      el.lastSteps.unshift(this.addStep(el));
+      el.lastSteps.unshift(this.getStepCoordinates(el));
       if (el.lastSteps.length > this.size / this.step) {
         el.lastSteps.pop();
       }
@@ -70,9 +72,9 @@ class Snake {
     }
   }
 
-  moveAllSnake(direction) {
+  move(direction) {
     this.makeStepByDirection(direction);
-    this.getLastStepsCoordinates();
+    this.makeLastStepsCollection();
     this.moveBody();
   }
 

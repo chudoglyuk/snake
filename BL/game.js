@@ -85,7 +85,7 @@ function increaseSnake(snakeObj) {
 }
 
 function moveSnake(snakeObj) {
-    snakeObj.moveAllSnake(direction);
+    snakeObj.move(direction);
     renderSnakeUI(snake1);
     eatApple();
 };
