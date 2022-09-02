@@ -1,5 +1,5 @@
 'use strict';
-import { getRandomInt } from "../BL/helpers";
+import { getRandomInt } from "../BL/helpers.js";
 
 const gameArea = document.querySelector('.field');
 const startButton = document.querySelector('.start-button');
