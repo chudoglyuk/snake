@@ -1,0 +1,30 @@
+.field {
+  border: 1px solid grey;
+  position: relative;
+  margin: auto;
+}
+
+.snake-head {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  background-color: rgba(255, 0, 0, 0.773);
+  position: absolute;
+  z-index: 3;
+}
+
+.snake-body {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  background-color: rgb(141, 52, 52);
+  position: absolute;
+  z-index: 2;
+}
+
+.apple {
+  background-color: green;
+  border-radius: 100%;
+  position: absolute;
+  z-index: 1;
+}
