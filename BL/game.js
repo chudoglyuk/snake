@@ -1,7 +1,7 @@
 'use strict';
 
 import { Snake } from "./Snake.js";
-import { getRandomInt } from "./helpers.js";
+import { chekCollision } from "./helpers.js";
 import { Apple } from "./apple.js";
 import { Field } from "./field.js";
 import {
@@ -71,6 +71,18 @@ function chekAppleSnakeCollision(snakeObj, appleObj) {
     return false;
 }
 
+function chekSnakeSelfCollision(snakeObj) {
+    if (snakeObj.body.length > 2) {
+        for (let i = 2; i < snakeObj.body.length - 1; i++) {
+            if (snakeObj.chekCollision(snakeObj.head, snakeObj.body[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+
 function eatApple() {
     if (chekAppleSnakeCollision(snake1, apple1)) {
         removeAppleUI();
@@ -96,7 +108,7 @@ function chekLoose(snakeObj, fieldObj) {
         snakeObj.head.x < 0 ||
         snakeObj.head.y > fieldObj.height - snakeObj.size ||
         snakeObj.head.y < 0 ||
-        snake1.chekSelfCollision()
+        chekSnakeSelfCollision(snake1)
     ) {
         return true;
     }

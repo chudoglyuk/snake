@@ -78,30 +78,6 @@ class Snake {
     this.moveBody();
   }
 
-  chekCollision(el1, el2) {
-    let collision = false;
-    if (
-      el1.x - el2.x > -(this.size) &&
-      el1.x - el2.x < this.size &&
-      el1.y - el2.y > -(this.size) &&
-      el1.y - el2.y < this.size
-    ) {
-      return (collision = true);
-    }
-    return collision;
-  }
-
-  chekSelfCollision() {
-    if (this.body.length > 2) {
-      for (let i = 2; i < this.body.length - 1; i++) {
-        if (this.chekCollision(this.head, this.body[i])) {
-          return true;
-        }
-      }
-      return false;
-    }
-  }
-
 
   resetSnake() {
     this.body = [{ x: 0, y: 0, lastSteps: [] }]
